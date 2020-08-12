@@ -3,10 +3,18 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
-trigger:
-  - master
-  - test_branch/*
+variables:
+- name: projectName
+  value: galactus-buildagent-CI
 
+trigger:
+ branches:
+   include:
+     - master
+     - test_branch
+ paths:
+   include:
+     - internal/buildagent/app
 
 pool:
   vmImage: 'ubuntu-latest'
